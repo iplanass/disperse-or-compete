@@ -41,7 +41,7 @@ t_dyn=10 # Every how many years do we keep values for dynamics
 dyn_breaks=10 #breaks for histogram dynamics
 
 #LANDSCAPE PARAMETERS
-#~ K=1000 # maximum quality
+#~ K=1000 # maximum quality (use for single simulation, instead of K_list below)
 SpC=1.2 # Spatial correlation index; if random SpC == 0.001
 SEP=0.05 # Stochastic Extinction events Probability
 SEPLocal=1 # if 1=local extinction; if 0=continuous disturbance of season
@@ -110,7 +110,7 @@ m<-function(nSo){ #MORTALITY
 
 #********************************************************#
 #--------------------------------------------------------#
-# 				END OF PARAMETER SECTION				 #
+# 		END OF PARAMETER SECTION		 #
 # this code will store results on your working directory #
 #--------------------------------------------------------#
 #********************************************************#
@@ -301,12 +301,12 @@ for (K in K_list){
 				size_dyn[which(size_dyn[,"K"]==kt),"K"]=kp[kt]
 			}
 		#---------------------------------------------------#
-		#					SIMULATION						#
+		#		SIMULATION	    		    #
 		#---------------------------------------------------#
 		
 			for (i in seq(0,time,1)){
 				#-----------------------------------------------------------#
-				# 				PHASE 1 - GROWTH, COMPETITION				#
+				# 		PHASE 1 - GROWTH, COMPETITION		    #
 				#-----------------------------------------------------------#
 				
 				#Organisms without competition:
@@ -494,7 +494,7 @@ for (K in K_list){
 										new_coly=matrix_size
 									}
 											#------------------------#
-											# 		Evolution		 #
+											#       Evolution	 #
 											#------------------------#
 									
 									newpatch=which(blobs[,"y"]==new_coly & blobs[,"x"]==new_colx) #new patch
@@ -586,9 +586,9 @@ for (K in K_list){
 		write.table(ReshEend,file=paste("./",newfoldername,"/dynamicsE_model/dyn_Hist_results.csv",sep=""),row.names=T,col.names=NA)
 		write.table(ReshSoend,file=paste("./",newfoldername,"/dynamicsSo_model/dyn_Hist_results.csv",sep=""),row.names=T,col.names=NA)
 		
-		#---------------------------------------------#
-		#1- Hist of E and So at the end of simulations
-		#---------------------------------------------#
+		#------------------------------------------------#
+		#1- Hist of E and So at the end of simulations   #
+		#------------------------------------------------#
 		
 		ResEsum=colSums(ReshEend)
 		ResSosum=colSums(ReshSoend)
@@ -617,12 +617,6 @@ for (K in K_list){
 		dev.off()
 		
 		system(paste("mv summary.pdf",newfoldername))
-		system(paste("cp plot_figures_v3.R ",newfoldername, "/plot_temp.R",sep=""))
-		setwd(newfoldername)
-		system("R -f plot_temp.R")
-		system("rm plot_temp.R")
-		setwd("../")
-	
 		print(proc.time()-ptm0)
 	}
 }
