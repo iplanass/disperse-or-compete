@@ -1,4 +1,5 @@
 #last modification: 2022/05/11 - Tested on R 3.5 - R 4.1
+#see Planas-Sitjà et al. 2023 - To disperse or compete? Coevolution of traits leads to a limited number of reproductive strategies - OIKOS 
 #This version uses previously generated rasters, instead of generating them itself. 
 #Using library(NLMR) could generate a different raster at the beginning of each simulation.
 library(ggplot2)
